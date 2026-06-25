@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ONG por el Derecho a la Vida y la Biodiversidad — Reciclaje comunitario, capacitaciones y actividades sociales en Bogotá D.C." />
+  <title>ONG Vida y Biodiversidad</title>
+  <style>
+    /* ── Variables ── */
+    :root {
+      --verde-oscuro:  #2B6B2B;
+      --verde-medio:   #4A8A1E;
+      --verde-claro:   #8DC63F;
+      --verde-palido:  #C8E6A0;
+      --crema:         #F7F9F3;
+      --blanco:        #FFFFFF;
+      --gris-texto:    #2C2C2C;
+      --gris-suave:    #6B7280;
+      --borde:         #D4E8B0;
+      --sombra:        0 2px 16px rgba(43,107,43,.12);
+      --radio:         12px;
+      --transicion:    0.25s ease;
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--blanco);
+      color: var(--gris-texto);
+      line-height: 1.65;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Utilidades ── */
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+    .seccion-titulo {
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 700;
+      color: var(--verde-oscuro);
+      margin-bottom: .4rem;
+    }
+    .seccion-subtitulo {
+      color: var(--gris-suave);
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .chip {
+      display: inline-block;
+      background: var(--verde-palido);
+      color: var(--verde-oscuro);
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: .25rem .75rem;
+      border-radius: 99px;
+      margin-bottom: .9rem;
+    }
+
+    /* ════════════════════════════
+       HEADER / NAV
+    ════════════════════════════ */
+    #header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--blanco);
+      border-bottom: 1px solid var(--borde);
+      box-shadow: 0 1px 8px rgba(43,107,43,.08);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      gap: 1rem;
+    }
+    .nav-marca {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      flex-shrink: 0;
+    }
+    .nav-marca img {
+      height: 48px;
+      width: auto;
+    }
+    .nav-marca-texto {
+      display: none;
+    }
+    @media (min-width: 480px) {
+      .nav-marca-texto {
+        display: block;
+        font-size: .8rem;
+        font-weight: 700;
+        color: var(--verde-oscuro);
+        line-height: 1.25;
+        max-width: 180px;
+      }
+    }
+    .nav-links {
+      display: none;
+      list-style: none;
+      gap: .25rem;
+    }
+    @media (min-width: 768px) {
+      .nav-links { display: flex; }
+    }
+    .nav-links a {
+      display: block;
+      padding: .45rem .85rem;
+      border-radius: 8px;
+      font-size: .92rem;
+      font-weight: 500;
+      color: var(--gris-texto);
+      transition: background var(--transicion), color var(--transicion);
+    }
+    .nav-links a:hover,
+    .nav-links a.activo {
+      background: var(--verde-palido);
+      color: var(--verde-oscuro);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      border-radius: 8px;
+      padding: 6px;
+      transition: background var(--transicion);
+    }
+    .hamburger:hover { background: var(--verde-palido); }
+    .hamburger span {
+      display: block;
+      height: 2px;
+      background: var(--verde-oscuro);
+      border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+    }
+    .hamburger.abierto span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.abierto span:nth-child(2) { opacity: 0; }
+    .hamburger.abierto span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (min-width: 768px) { .hamburger { display: none; } }
+
+    /* Menú móvil */
+    #menu-movil {
+      display: none;
+      flex-direction: column;
+      background: var(--blanco);
+      border-top: 1px solid var(--borde);
+      padding: .75rem 1.25rem 1rem;
+      gap: .25rem;
+    }
+    #menu-movil.abierto { display: flex; }
+    #menu-movil a {
+      padding: .6rem .75rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--gris-texto);
+      transition: background var(--transicion);
+    }
+    #menu-movil a:hover { background: var(--verde-palido); color: var(--verde-oscuro); }
+
+    /* ════════════════════════════
+       HERO
+    ════════════════════════════ */
+    #inicio {
+      background: linear-gradient(160deg, var(--crema) 0%, #EAF5D8 60%, #D6EDBB 100%);
+      padding: 4rem 0 3rem;
+      overflow: hidden;
+    }
+    .hero-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    @media (min-width: 768px) {
+      .hero-inner {
+        flex-direction: row;
+        align-items: center;
+        gap: 3rem;
+      }
+      #inicio { padding: 5rem 0 4rem; }
+    }
+    .hero-texto { flex: 1; text-align: center; }
+    @media (min-width: 768px) { .hero-texto { text-align: left; } }
+    .hero-texto h1 {
+      font-size: clamp(1.75rem, 4vw, 3rem);
+      font-weight: 800;
+      color: var(--verde-oscuro);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .hero-texto h1 em {
+      font-style: normal;
+      color: var(--verde-medio);
+    }
+    .hero-texto p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--gris-suave);
+      max-width: 480px;
+      margin: 0 auto 1.75rem;
+    }
+    @media (min-width: 768px) { .hero-texto p { margin: 0 0 1.75rem; } }
+    .hero-cta {
+      display: inline-flex;
+      gap: .75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    @media (min-width: 768px) { .hero-cta { justify-content: flex-start; } }
+    .btn-primario {
+      display: inline-block;
+      background: var(--verde-oscuro);
+      color: var(--blanco);
+      padding: .75rem 1.6rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: .95rem;
+      transition: background var(--transicion), transform .15s;
+    }
+    .btn-primario:hover { background: var(--verde-medio); transform: translateY(-1px); }
+    .btn-secundario {
+      display: inline-block;
+      background: transparent;
+      color: var(--verde-oscuro);
+      border: 2px solid var(--verde-oscuro);
+      padding: .7rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: .95rem;
+      transition: background var(--transicion), color var(--transicion);
+    }
+    .btn-secundario:hover { background: var(--verde-oscuro); color: var(--blanco); }
+
+    /* SVG ilustración */
+    .hero-ilustracion {
+      flex: 0 0 auto;
+      width: min(320px, 90vw);
+    }
+    .hero-ilustracion svg { width: 100%; height: auto; }
+
+    /* ════════════════════════════
+       QUIÉNES SOMOS
+    ════════════════════════════ */
+    #quienes {
+      padding: 4.5rem 0;
+      background: var(--blanco);
+    }
+    .quienes-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    @media (min-width: 640px) {
+      .quienes-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 900px) {
+      .quienes-grid { grid-template-columns: 1fr 1fr 1fr 1fr; }
+    }
+    .quienes-card {
+      background: var(--crema);
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+      padding: 1.5rem;
+      transition: box-shadow var(--transicion), transform var(--transicion);
+    }
+    .quienes-card:hover {
+      box-shadow: var(--sombra);
+      transform: translateY(-3px);
+    }
+    .card-icono {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--verde-palido);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .card-icono svg { width: 26px; height: 26px; }
+    .quienes-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--verde-oscuro);
+      margin-bottom: .5rem;
+    }
+    .quienes-card p {
+      font-size: .9rem;
+      color: var(--gris-suave);
+      line-height: 1.55;
+    }
+
+    /* Bloque RTE */
+    .rte-bloque {
+      margin-top: 2.5rem;
+      background: linear-gradient(135deg, var(--verde-oscuro), var(--verde-medio));
+      border-radius: var(--radio);
+      padding: 1.75rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      color: var(--blanco);
+    }
+    @media (min-width: 640px) {
+      .rte-bloque { flex-direction: row; align-items: center; gap: 2rem; }
+    }
+    .rte-bloque svg { flex-shrink: 0; width: 40px; height: 40px; opacity: .9; }
+    .rte-bloque h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: .3rem; }
+    .rte-bloque p { font-size: .9rem; opacity: .9; }
+
+    /* ════════════════════════════
+       TRANSPARENCIA
+    ════════════════════════════ */
+    #transparencia {
+      padding: 4.5rem 0;
+      background: var(--crema);
+    }
+    .docs-lista {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      margin-bottom: 2rem;
+    }
+    .doc-item {
+      background: var(--blanco);
+      border: 1px solid var(--borde);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      transition: box-shadow var(--transicion), border-color var(--transicion);
+    }
+    .doc-item:hover, .doc-item.activo {
+      border-color: var(--verde-claro);
+      box-shadow: 0 0 0 3px rgba(141,198,63,.2);
+    }
+    .doc-item.activo { border-color: var(--verde-oscuro); }
+    .doc-icono {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: var(--verde-palido);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .doc-icono svg { width: 22px; height: 22px; }
+    .doc-info { flex: 1; min-width: 0; }
+    .doc-info strong {
+      display: block;
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--gris-texto);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .doc-info span {
+      font-size: .8rem;
+      color: var(--gris-suave);
+    }
+    .doc-acciones {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      flex-shrink: 0;
+    }
+    .btn-ver {
+      background: var(--verde-oscuro);
+      color: var(--blanco);
+      border: none;
+      border-radius: 7px;
+      padding: .4rem .9rem;
+      font-size: .82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background var(--transicion);
+    }
+    .btn-ver:hover { background: var(--verde-medio); }
+    .btn-nueva-tab {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 7px;
+      border: 1px solid var(--borde);
+      background: var(--blanco);
+      color: var(--gris-suave);
+      transition: border-color var(--transicion), color var(--transicion);
+    }
+    .btn-nueva-tab:hover { border-color: var(--verde-claro); color: var(--verde-oscuro); }
+    .btn-nueva-tab svg { width: 16px; height: 16px; }
+
+    /* Visor PDF */
+    #visor-pdf {
+      display: none;
+      border: 2px solid var(--verde-claro);
+      border-radius: var(--radio);
+      overflow: hidden;
+      background: #f0f0f0;
+    }
+    #visor-pdf.visible { display: block; }
+    #visor-pdf-barra {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--verde-oscuro);
+      color: var(--blanco);
+      padding: .6rem 1rem;
+      font-size: .85rem;
+      font-weight: 600;
+      gap: .5rem;
+    }
+    #visor-pdf-nombre { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #btn-cerrar-visor {
+      background: rgba(255,255,255,.15);
+      border: none;
+      color: var(--blanco);
+      border-radius: 6px;
+      padding: .3rem .7rem;
+      cursor: pointer;
+      font-size: .82rem;
+      transition: background var(--transicion);
+    }
+    #btn-cerrar-visor:hover { background: rgba(255,255,255,.3); }
+    #visor-iframe {
+      width: 100%;
+      height: 70vh;
+      min-height: 400px;
+      border: none;
+      display: block;
+    }
+    .aviso-pdf {
+      margin-top: 1.25rem;
+      background: #FEF9ED;
+      border: 1px solid #F5D87A;
+      border-radius: 8px;
+      padding: .85rem 1rem;
+      font-size: .85rem;
+      color: #7A5C00;
+      display: flex;
+      gap: .6rem;
+      align-items: flex-start;
+    }
+    .aviso-pdf svg { flex-shrink: 0; margin-top: 1px; width: 16px; height: 16px; }
+
+    /* ════════════════════════════
+       CONTACTO
+    ════════════════════════════ */
+    #contacto {
+      padding: 4.5rem 0 0;
+      background: var(--blanco);
+    }
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 640px) {
+      .contacto-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .contacto-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .contacto-icono {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      background: var(--verde-palido);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .contacto-icono svg { width: 22px; height: 22px; }
+    .contacto-item h4 {
+      font-size: .8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--verde-medio);
+      margin-bottom: .2rem;
+    }
+    .contacto-item p, .contacto-item a {
+      font-size: .95rem;
+      color: var(--gris-texto);
+      line-height: 1.5;
+    }
+    .contacto-item a:hover { color: var(--verde-oscuro); text-decoration: underline; }
+
+    /* ════════════════════════════
+       FOOTER
+    ════════════════════════════ */
+    footer {
+      margin-top: 4rem;
+      background: var(--verde-oscuro);
+      color: rgba(255,255,255,.75);
+      padding: 2rem 0;
+    }
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      text-align: center;
+    }
+    @media (min-width: 640px) {
+      .footer-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+    }
+    .footer-marca {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .footer-marca img {
+      height: 40px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: .85;
+    }
+    .footer-marca span {
+      font-size: .85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.9);
+      line-height: 1.3;
+      max-width: 160px;
+    }
+    .footer-info {
+      font-size: .8rem;
+      line-height: 1.7;
+    }
+    .footer-info strong { color: rgba(255,255,255,.9); }
+
+    /* ════════════════════════════
+       SCROLL SUAVE — anclas con offset
+    ════════════════════════════ */
+    :target { scroll-margin-top: 80px; }
+
+    /* ── Divider ── */
+    .divider {
+      height: 4px;
+      border: none;
+      background: linear-gradient(90deg, var(--verde-claro), var(--verde-oscuro), var(--verde-claro));
+      opacity: .25;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header id="header">
+  <div class="container">
+    <nav class="nav-inner">
+      <a href="#inicio" class="nav-marca" aria-label="Inicio">
+        <img src="assets/logo.png" alt="Logo ONG Vida y Biodiversidad" />
+        <span class="nav-marca-texto">ONG Vida y<br>Biodiversidad</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#quienes">Quiénes somos</a></li>
+        <li><a href="#transparencia">Transparencia</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+  <div id="menu-movil" role="navigation" aria-label="Menú móvil">
+    <a href="#inicio" class="nav-link-movil">Inicio</a>
+    <a href="#quienes" class="nav-link-movil">Quiénes somos</a>
+    <a href="#transparencia" class="nav-link-movil">Transparencia</a>
+    <a href="#contacto" class="nav-link-movil">Contacto</a>
+  </div>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section id="inicio">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-texto">
+        <div class="chip">Bogotá D.C. · Desde 2002</div>
+        <h1>Por el derecho a la <em>vida</em> y la <em>biodiversidad</em></h1>
+        <p>Promovemos el reciclaje comunitario, la cultura ambiental y el bienestar social en unidades residenciales y comunidades de Bogotá.</p>
+        <div class="hero-cta">
+          <a href="#quienes" class="btn-primario">Conoce nuestro trabajo</a>
+          <a href="#transparencia" class="btn-secundario">Documentos RTE</a>
+        </div>
+      </div>
+
+      <!-- Ilustración SVG original -->
+      <div class="hero-ilustracion" aria-hidden="true">
+        <svg viewBox="0 0 320 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Árbol y manos cuidando la naturaleza">
+          <!-- Tierra / base -->
+          <ellipse cx="160" cy="298" rx="110" ry="22" fill="#C8E6A0" opacity=".6"/>
+          <!-- Tronco -->
+          <rect x="148" y="220" width="24" height="72" rx="8" fill="#5C8A2A"/>
+          <rect x="153" y="240" width="14" height="52" rx="6" fill="#4A7020"/>
+          <!-- Copa principal -->
+          <circle cx="160" cy="160" r="80" fill="#8DC63F"/>
+          <circle cx="160" cy="148" r="68" fill="#7AB82E"/>
+          <!-- Hojas adicionales -->
+          <circle cx="110" cy="175" r="48" fill="#8DC63F"/>
+          <circle cx="210" cy="175" r="48" fill="#8DC63F"/>
+          <circle cx="130" cy="130" r="42" fill="#7AB82E"/>
+          <circle cx="192" cy="128" r="40" fill="#7AB82E"/>
+          <circle cx="160" cy="100" r="52" fill="#95D03E"/>
+          <!-- Destellos de luz -->
+          <circle cx="135" cy="108" r="14" fill="#B8E05A" opacity=".55"/>
+          <circle cx="185" cy="115" r="10" fill="#B8E05A" opacity=".4"/>
+          <circle cx="150" cy="90" r="8" fill="#D0EE80" opacity=".5"/>
+          <!-- Piezas puzzle sobre copa (guiño al logo) -->
+          <rect x="140" y="140" width="18" height="18" rx="4" fill="#2B6B2B" opacity=".25"/>
+          <rect x="163" y="155" width="15" height="15" rx="4" fill="#2B6B2B" opacity=".2"/>
+          <rect x="125" y="162" width="14" height="14" rx="4" fill="#2B6B2B" opacity=".18"/>
+          <!-- Mano izquierda -->
+          <g transform="translate(42,240) rotate(-25)">
+            <!-- Palma -->
+            <ellipse cx="0" cy="0" rx="22" ry="28" fill="#A3D96B"/>
+            <!-- Dedos -->
+            <rect x="-18" y="-38" width="9" height="24" rx="4.5" fill="#8DC63F"/>
+            <rect x="-7"  y="-44" width="9" height="30" rx="4.5" fill="#95D040"/>
+            <rect x="4"   y="-42" width="9" height="28" rx="4.5" fill="#8DC63F"/>
+            <rect x="15"  y="-36" width="8" height="22" rx="4" fill="#7AB82E"/>
+            <!-- Pulgar -->
+            <rect x="-28" y="-10" width="8" height="18" rx="4" transform="rotate(-30,-28,-10)" fill="#8DC63F"/>
+          </g>
+          <!-- Mano derecha -->
+          <g transform="translate(278,240) rotate(25) scale(-1,1)">
+            <ellipse cx="0" cy="0" rx="22" ry="28" fill="#A3D96B"/>
+            <rect x="-18" y="-38" width="9" height="24" rx="4.5" fill="#8DC63F"/>
+            <rect x="-7"  y="-44" width="9" height="30" rx="4.5" fill="#95D040"/>
+            <rect x="4"   y="-42" width="9" height="28" rx="4.5" fill="#8DC63F"/>
+            <rect x="15"  y="-36" width="8" height="22" rx="4" fill="#7AB82E"/>
+            <rect x="-28" y="-10" width="8" height="18" rx="4" transform="rotate(-30,-28,-10)" fill="#8DC63F"/>
+          </g>
+          <!-- Estrellas / partículas -->
+          <circle cx="72"  cy="130" r="4" fill="#8DC63F" opacity=".6"/>
+          <circle cx="252" cy="118" r="5" fill="#8DC63F" opacity=".5"/>
+          <circle cx="58"  cy="100" r="3" fill="#4A8A1E" opacity=".5"/>
+          <circle cx="266" cy="148" r="3" fill="#4A8A1E" opacity=".5"/>
+          <circle cx="90"  cy="82"  r="5" fill="#C8E6A0" opacity=".7"/>
+          <circle cx="234" cy="90"  r="4" fill="#C8E6A0" opacity=".6"/>
+          <!-- Hoja flotante izquierda -->
+          <ellipse cx="62" cy="170" rx="12" ry="7" fill="#8DC63F" opacity=".7" transform="rotate(-35,62,170)"/>
+          <ellipse cx="258" cy="165" rx="12" ry="7" fill="#8DC63F" opacity=".7" transform="rotate(35,258,165)"/>
+          <!-- Pequeñas flores / puntos -->
+          <circle cx="108" cy="200" r="5" fill="#95D040" opacity=".5"/>
+          <circle cx="215" cy="196" r="4" fill="#95D040" opacity=".45"/>
+          <circle cx="160" cy="210" r="5" fill="#7AB82E" opacity=".4"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ QUIÉNES SOMOS ═══ -->
+<section id="quienes">
+  <div class="container">
+    <div class="chip">Quiénes somos</div>
+    <h2 class="seccion-titulo">Qué hacemos</h2>
+    <p class="seccion-subtitulo">Trabajamos por el medio ambiente y el bienestar de las comunidades bogotanas desde 2002.</p>
+
+    <div class="quienes-grid">
+      <!-- Tarjeta 1 -->
+      <div class="quienes-card">
+        <div class="card-icono">
+          <!-- Reciclaje -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 19H4.5A2.5 2.5 0 0 1 2 16.5v-1A2.5 2.5 0 0 1 4.5 13H6" stroke="#2B6B2B" stroke-width="2" stroke-linecap="round"/>
+            <path d="M17 19h2.5A2.5 2.5 0 0 0 22 16.5v-1A2.5 2.5 0 0 0 19.5 13H18" stroke="#2B6B2B" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 2L9 5h6l-3-3z" fill="#2B6B2B"/>
+            <path d="M12 5v8" stroke="#2B6B2B" stroke-width="2" stroke-linecap="round"/>
+            <path d="M7 13l5 6 5-6" stroke="#2B6B2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Reciclaje y aforo residencial</h3>
+        <p>Gestionamos campañas de reciclaje y aforo de residuos en unidades residenciales, fomentando la cultura ambiental desde el hogar.</p>
+      </div>
+
+      <!-- Tarjeta 2 -->
+      <div class="quienes-card">
+        <div class="card-icono">
+          <!-- Capacitación -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3L2 8l10 5 10-5-10-5z" stroke="#2B6B2B" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M2 8v6" stroke="#2B6B2B" stroke-width="2" stroke-linecap="round"/>
+            <path d="M22 8v6" stroke="#2B6B2B" stroke-width="2" stroke-linecap="round"/>
+            <path d="M6 10.5v5A6 6 0 0 0 18 15.5v-5" stroke="#2B6B2B" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Capacitación a recuperadores</h3>
+        <p>Formamos a bodegueros y recuperadores de residuos para mejorar sus prácticas y dignificar su labor en la cadena del reciclaje.</p>
+      </div>
+
+      <!-- Tarjeta 3 -->
+      <div class="quienes-card">
+        <div class="card-icono">
+          <!-- Adulto mayor / corazón -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 21C12 21 3 14.5 3 8.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 9 2.5C21 14.5 12 21 12 21z" stroke="#2B6B2B" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Día del adulto mayor</h3>
+        <p>Organizamos jornadas de integración y bienestar para adultos mayores, reconociendo su valor en la comunidad.</p>
+      </div>
+
+      <!-- Tarjeta 4 -->
+      <div class="quienes-card">
+        <div class="card-icono">
+          <!-- Niños / estrella -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z" stroke="#2B6B2B" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Día de los niños</h3>
+        <p>Celebramos a la infancia con actividades recreativas y educativas que refuerzan el amor por el medio ambiente desde temprana edad.</p>
+      </div>
+    </div>
+
+    <!-- Bloque RTE -->
+    <div class="rte-bloque">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="3" stroke="white" stroke-width="2"/>
+        <path d="M7 12l3 3 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <h3>Régimen Tributario Especial (RTE)</h3>
+        <p>Somos una entidad sin ánimo de lucro clasificada en el Régimen Tributario Especial, comprometida con la transparencia fiscal y el uso responsable de los recursos en beneficio de la comunidad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ TRANSPARENCIA ═══ -->
+<section id="transparencia">
+  <div class="container">
+    <div class="chip">Régimen Tributario Especial</div>
+    <h2 class="seccion-titulo">Transparencia y documentos</h2>
+    <p class="seccion-subtitulo">Consulta nuestros informes y documentos oficiales. Haz clic en "Ver" para abrir el PDF aquí mismo, o en el ícono para abrirlo en una nueva pestaña.</p>
+
+    <!-- Lista de documentos — agrega más <div class="doc-item"> según necesites -->
+    <div class="docs-lista" id="docs-lista">
+
+      <div class="doc-item" data-pdf="documentos/informe-gestion-2024.pdf" data-nombre="Informe de Gestión 2024">
+        <div class="doc-icono">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8L14 2z" stroke="#2B6B2B" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M14 2v6h6" stroke="#2B6B2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 13h6M9 17h4" stroke="#2B6B2B" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="doc-info">
+          <strong>Informe de Gestión 2024</strong>
+          <span>Reporte anual de actividades y resultados</span>
+        </div>
+        <div class="doc-acciones">
+          <button class="btn-ver" onclick="verPDF(this)">Ver</button>
+          <a class="btn-nueva-tab" title="Abrir en pestaña nueva" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M15 3h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="doc-item" data-pdf="documentos/declaracion-renta-2024.pdf" data-nombre="Declaración de Renta 2024">
+        <div class="doc-icono">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8L14 2z" stroke="#2B6B2B" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M14 2v6h6" stroke="#2B6B2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 13h6M9 17h4" stroke="#2B6B2B" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="doc-info">
+          <strong>Declaración de Renta 2024</strong>
+          <span>Declaración tributaria ante la DIAN</span>
+        </div>
+        <div class="doc-acciones">
+          <button class="btn-ver" onclick="verPDF(this)">Ver</button>
+          <a class="btn-nueva-tab" title="Abrir en pestaña nueva" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M15 3h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="doc-item" data-pdf="documentos/estados-financieros-2024.pdf" data-nombre="Estados Financieros 2024">
+        <div class="doc-icono">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8L14 2z" stroke="#2B6B2B" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M14 2v6h6" stroke="#2B6B2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 13h6M9 17h4" stroke="#2B6B2B" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="doc-info">
+          <strong>Estados Financieros 2024</strong>
+          <span>Balance general y estado de resultados</span>
+        </div>
+        <div class="doc-acciones">
+          <button class="btn-ver" onclick="verPDF(this)">Ver</button>
+          <a class="btn-nueva-tab" title="Abrir en pestaña nueva" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M15 3h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="doc-item" data-pdf="documentos/certificado-rte.pdf" data-nombre="Certificado RTE DIAN">
+        <div class="doc-icono">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="12" cy="8" r="4" stroke="#2B6B2B" stroke-width="2"/>
+            <path d="M9 21l1.5-4h3L15 21" stroke="#2B6B2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 12v5" stroke="#2B6B2B" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="doc-info">
+          <strong>Certificado RTE — DIAN</strong>
+          <span>Calificación en el Régimen Tributario Especial</span>
+        </div>
+        <div class="doc-acciones">
+          <button class="btn-ver" onclick="verPDF(this)">Ver</button>
+          <a class="btn-nueva-tab" title="Abrir en pestaña nueva" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M15 3h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /docs-lista -->
+
+    <!-- Aviso -->
+    <div class="aviso-pdf">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" stroke="#7A5C00" stroke-width="2"/>
+        <path d="M12 8v4" stroke="#7A5C00" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="12" cy="16" r="1" fill="#7A5C00"/>
+      </svg>
+      <span>Si el documento no se visualiza en tu dispositivo, usa el ícono <strong>↗</strong> para abrirlo en una pestaña nueva.</span>
+    </div>
+
+    <!-- Visor PDF en página -->
+    <div id="visor-pdf" style="margin-top:1.5rem;">
+      <div id="visor-pdf-barra">
+        <span id="visor-pdf-nombre"></span>
+        <button id="btn-cerrar-visor" onclick="cerrarVisor()">✕ Cerrar</button>
+      </div>
+      <iframe id="visor-iframe" title="Visor de documento PDF"></iframe>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ CONTACTO ═══ -->
+<section id="contacto">
+  <div class="container">
+    <div class="chip">Contacto</div>
+    <h2 class="seccion-titulo">Encuéntranos</h2>
+    <p class="seccion-subtitulo">Estamos en Bogotá D.C. y atendemos consultas por correo y teléfono.</p>
+
+    <div class="contacto-grid">
+      <div class="contacto-item">
+        <div class="contacto-icono">
+          <!-- Pin de mapa -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="#2B6B2B" stroke-width="2" stroke-linejoin="round"/>
+            <circle cx="12" cy="9" r="2.5" stroke="#2B6B2B" stroke-width="2"/>
+          </svg>
+        </div>
+        <div>
+          <h4>Dirección</h4>
+          <p>CR 7D N 127-09<br>Barrio Bella Suiza<br>Bogotá D.C., Colombia</p>
+        </div>
+      </div>
+
+      <div class="contacto-item">
+        <div class="contacto-icono">
+          <!-- Correo -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="3" stroke="#2B6B2B" stroke-width="2"/>
+            <path d="M2 8l10 6 10-6" stroke="#2B6B2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <h4>Correo electrónico</h4>
+          <a href="mailto:ongvidaybiodiversidad@gmail.com">ongvidaybiodiversidad@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="contacto-item">
+        <div class="contacto-icono">
+          <!-- Teléfono -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" stroke="#2B6B2B" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <h4>Teléfonos</h4>
+          <p>
+            <a href="tel:5169748">Tel: 5169748</a><br>
+            <a href="tel:3214682470">Cel: 321 468 2470</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="contacto-item">
+        <div class="contacto-icono">
+          <!-- NIT / documento -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8L14 2z" stroke="#2B6B2B" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M14 2v6h6" stroke="#2B6B2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 13h8M8 17h5" stroke="#2B6B2B" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <h4>NIT</h4>
+          <p>830118305-0<br>Constituida en 2002</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-marca">
+        <img src="assets/logo.png" alt="Logo ONG Vida y Biodiversidad" />
+        <span>ONG Vida y Biodiversidad</span>
+      </div>
+      <div class="footer-info">
+        <strong>ONG por el Derecho a la Vida y la Biodiversidad</strong><br>
+        NIT 830118305-0 · Bogotá D.C., Colombia<br>
+        © <span id="anio-footer"></span> Todos los derechos reservados
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Año dinámico en footer ──
+  document.getElementById('anio-footer').textContent = new Date().getFullYear();
+
+  // ── Menú hamburguesa ──
+  const hamburger = document.getElementById('hamburger');
+  const menuMovil = document.getElementById('menu-movil');
+  hamburger.addEventListener('click', () => {
+    const abierto = menuMovil.classList.toggle('abierto');
+    hamburger.classList.toggle('abierto', abierto);
+    hamburger.setAttribute('aria-expanded', abierto);
+  });
+  document.querySelectorAll('.nav-link-movil').forEach(a => {
+    a.addEventListener('click', () => {
+      menuMovil.classList.remove('abierto');
+      hamburger.classList.remove('abierto');
+      hamburger.setAttribute('aria-expanded', false);
+    });
+  });
+
+  // ── Activar enlace de nav según sección visible ──
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const secciones = document.querySelectorAll('section[id]');
+  const observador = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => {
+          a.classList.toggle('activo', a.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  secciones.forEach(s => observador.observe(s));
+
+  // ── Visor de PDFs ──
+  const docItems   = document.querySelectorAll('.doc-item');
+  const visorPDF   = document.getElementById('visor-pdf');
+  const iframe     = document.getElementById('visor-iframe');
+  const nombreSpan = document.getElementById('visor-pdf-nombre');
+
+  // Inicializa los links "abrir en nueva pestaña"
+  docItems.forEach(item => {
+    const pdf    = item.dataset.pdf;
+    const enlace = item.querySelector('.btn-nueva-tab');
+    if (enlace) enlace.href = pdf;
+  });
+
+  function verPDF(boton) {
+    const item   = boton.closest('.doc-item');
+    const pdf    = item.dataset.pdf;
+    const nombre = item.dataset.nombre;
+
+    // Marca el item activo
+    docItems.forEach(d => d.classList.remove('activo'));
+    item.classList.add('activo');
+
+    // Actualiza visor
+    nombreSpan.textContent = nombre;
+    iframe.src = pdf;
+    visorPDF.classList.add('visible');
+
+    // Scroll suave al visor
+    setTimeout(() => {
+      visorPDF.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
+  }
+
+  function cerrarVisor() {
+    visorPDF.classList.remove('visible');
+    iframe.src = '';
+    docItems.forEach(d => d.classList.remove('activo'));
+  }
+</script>
+</body>
+</html>
